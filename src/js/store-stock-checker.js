@@ -1,4 +1,3 @@
-
 'use strict';
 var reqwest = require('reqwest');
 
@@ -16,6 +15,7 @@ function getStores(sku, postCodeArg, onSuccess, onError) {
     if (typeof sku === 'undefined' || typeof sku !== 'string') {
         throw new Error("getStores(): First arg (sku) must be a string.");
     }
+
     var requestData = {};
     if (postCode) {
         requestData.postCode = postCode;

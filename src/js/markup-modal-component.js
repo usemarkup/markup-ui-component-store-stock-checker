@@ -27,22 +27,23 @@ var MarkupModalUIComponent = Ractive.extend({
     updateStores: function (sku, postCode) {
         console.log('update stores called with '+sku+' + '+ postCode);
         var _this = this;
-        var onSuccess = function (successResult) {
-            if (successResult.status === 'error') {
-                _this.onError(successResult);
-            } else {
-                console.log('result', successResult);
-                _this.set('stores', successResult.stores);
-                _this.update('stores');
-            }
-        };
         var onError = function (error) {
-            console.log('caught ', error);
+            console.log('error ', error);
             _this.set('stores', false);
             _this.set('selectedSize', false);
             _this.update('selectedSize');
             _this.update('stores');
-        }
+        };
+
+        var onSuccess = function (successResult) {
+            if (successResult.status === 'error') {
+                onError(successResult);
+            } else {
+                console.log('success', successResult);
+                _this.set('stores', successResult.stores);
+                _this.update('stores');
+            }
+        };
 
         // reset stores (to show loading...)
         this.set('stores', false);
