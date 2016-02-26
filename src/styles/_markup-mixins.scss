@@ -1,0 +1,105 @@
+// Set all the colors for a link with one mixin call.
+// Order of arguments is:
+//
+// 1. normal
+// 2. hover
+// 3. active
+// 4. visited
+// 5. focus
+//
+// Those states not specified will inherit.
+// Mixin to an anchor link like so:
+//     a
+//       +link-colors(#00c, #0cc, #c0c, #ccc, #cc0)
+
+@mixin link-colors($normal, $hover: false, $active: false, $visited: false, $focus: false) {
+    color: $normal;
+    @if $visited {
+        &:visited {
+            color: $visited; } }
+    @if $focus {
+        &:focus {
+            color: $focus; } }
+    @if $hover {
+        &:hover {
+            color: $hover; } }
+    @if $active {
+        &:active {
+            color: $active; } } }
+
+
+
+
+
+//http://albertogasparin.it/articles/2014/09/breakpoint-library-and-libsass/
+
+@mixin breakpoint($query) {
+    $query-string: breakpoint-parse-query($query);
+
+    @media #{$query-string} {
+        @content;
+    }
+
+    // Missing the no query fallbacks code
+}
+@function breakpoint-parse-query($query) {
+    $length: length($query);
+    $mq: 'all ';
+
+    // If it's a single number
+    @if $length == 1 {
+        @return $mq + 'and (min-width: ' + $query + ')';
+    }
+
+    // If we've got a string/number
+    @if (type-of(nth($query, 1)) == 'string' and type-of(nth($query, 2)) == 'number') {
+        @return $mq + 'and (' + nth($query, 1) + ': ' + nth($query, 2) + ')';
+    }
+
+    // If they're both numbers, we assume it's a double and roll with that
+    @if (type-of(nth($query, 1)) == 'number' and type-of(nth($query, 2)) == 'number') {
+        @return $mq + 'and (min-width: ' + nth($query, 1) + ') and (max-width: ' + nth($query, 2) + ' )';
+    }
+
+    // Else assume is a list of properly formatted mq
+    @each $single-query in $query {
+        $mq: $mq + 'and (' + nth($query, 1) + ': ' + nth($query, 2) + ')';
+    }
+    @return $mq;
+}
+
+
+@mixin resize-transition {
+    transition:all .2s linear;
+    -o-transition:all .2s linear;
+    -moz-transition:all .2s linear;
+    -webkit-transition:all .2s linear;
+}
+
+@mixin center-horizontally {
+    top: 50%;
+    -webkit-transform: translateY(-50%);
+    -ms-transform: translateY(-50%);
+    transform: translateY(-50%);
+    text-align: center;
+    position: absolute;
+}
+
+@mixin center-horizontally-and-vertically {
+    top: 50%;
+    left: 50%;
+    -webkit-transform: translateX(-50%) translateY(-50%);
+    -ms-transform: translateX(-50%) translateY(-50%);
+    transform: translateX(-50%) translateY(-50%);
+    text-align: center;
+    position: absolute;
+}
+
+@mixin center-vertically {
+    left: 50%;
+    -webkit-transform: translateX(-50%);
+    -ms-transform: translateX(-50%);
+    transform: translateX(-50%);
+    text-align: center;
+    position: absolute;
+}

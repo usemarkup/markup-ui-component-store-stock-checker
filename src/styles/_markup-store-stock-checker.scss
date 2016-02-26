@@ -1,0 +1,316 @@
+@import "markup-typography";
+
+$title-bar-height: 60px;
+$border-color: #F4F4F4;
+$subtitles-color: #999;
+
+.markup-modal__title-bar {
+    position: absolute;
+    top:0;
+    left:0;
+    right:0;
+    border-bottom: 1px solid $border-color;
+    height: $title-bar-height;
+    animation-name: bounce;
+    transform-origin: center bottom;
+}
+
+.markup-modal__title-bar-close {
+    position: absolute;
+    top:0;
+    right:0;
+    width:$title-bar-height;
+    height:$title-bar-height;
+    line-height: $title-bar-height;
+    font-size: 20px;
+    cursor: pointer;
+}
+
+.markup-modal{
+    width: 700px;
+    max-width: 90vw;
+
+    padding-left:0;
+    padding-right:0;
+    padding-bottom:0;
+    max-height: 90vh;
+    overflow: scroll;
+}
+
+.markup-modal__content {
+    text-align:left;
+}
+
+
+.store-stock-checker-title {
+    // Markup Modern Bold 12pt $black
+    @include sans-serif-font-stack;
+    font-size: 13px;
+    color: $black;
+    width: 100%;
+    display: inline-block;
+    margin: 0;
+    padding: 20px 0;
+    text-transform: uppercase;
+    text-decoration:none;
+    line-height: 18px;
+}
+
+.store-stock-checker-product {
+    width:100%;
+    min-height: 150px;
+    padding: 0 30px 0 150px;
+    position: relative;
+}
+
+.store-stock-checker-product__image {
+    position: absolute;
+    left: 20px;
+    top: 15px;
+    img {
+        display:block;
+    }
+}
+.store-stock-checker-product__details{
+    @include center-horizontally;
+    text-align: left;
+}
+.store-stock-checker-product__collection,
+.store-stock-checker-product__articlenumber {
+    @include sans-serif-font-stack;
+    font-size: 14px;
+    letter-spacing: 0.01em; // tracking 10: 10/1000
+    color: $subtitles-color;
+}
+
+
+.store-stock-checker-product__title {
+    @include markup-typog-h4;
+    text-transform: uppercase;
+    font-size: 22px;
+}
+
+
+select {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    height: 50px;
+    padding:15px;
+    @include markup-typog-h4;
+    font-size: 14px;
+    background: white;
+    border-radius:0;
+    border:  1px solid $border-color;
+}
+
+.markup-modal input[type="text"] {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    height: 50px;
+    padding:15px;
+    @include markup-typog-h4;
+    font-size: 14px;
+    background: white;
+    border-radius:0;
+    border:  1px solid $border-color;
+    width:100%;
+    margin-top:25px;
+    margin-bottom:40px;
+    text-align: left;
+}
+
+
+
+
+.store-stock-checker-product__color,.store-stock-checker-product__size{
+    padding: 0 20px 56px;
+    border-bottom: 1px solid $border-color;
+}
+
+.store-stock-checker-product__color{
+}
+
+
+.store-stock-checker-product__color-swatch {
+    display: inline-block;
+    float: left;
+    border-radius: 50%;
+    width:36px;
+    height:36px;
+}
+
+.store-stock-checker-product__color-name {
+    display: inline-block;
+    @include markup-typog-paragraph;
+    line-height: 36px;
+    float: left;
+    padding-left: 10px;
+}
+
+.store-stock-checker-product__size{
+
+}
+
+.store-stock-checker__results {
+    background: #F4F4F4;
+    padding: 50px;
+}
+
+.store-stock-checker-results__title {
+    @include markup-typog-h5;
+    color: #999;
+}
+
+.store-stock-checker-results__copy {
+    @include markup-typog-paragraph;
+    color: #999;
+}
+
+.ssc-store {
+    position: relative;
+    padding: 30px;
+    background: white;
+    margin-bottom: 30px;
+    border-left: 4px solid #EEE;
+    border-bottom: 2px solid #E1e1e1;
+
+    &.expanded{
+        border-left: 4px solid black;
+    }
+}
+
+.ssc-store__expand {
+    position: absolute;
+    top: 36px;
+    right: 30px;
+    width: 36px;
+    height: 36px;
+    line-height: 34px;
+    font-size: 20px;
+    cursor: pointer;
+    text-align: center;
+    border-radius: 18px;
+    border: 1px solid $border-color;
+    &::after{
+        content:"+";
+    }
+
+}
+
+.ssc-store.expanded .ssc-store__expand {
+    background: $border-color;
+    line-height: 30px;
+    font-size: 33px;
+    &::after{
+        content:"-";
+    }
+}
+
+.ssc-store__name {
+    @include markup-typog-h5;
+}
+
+.ssc-store__opening-hours {
+    display: none;
+}
+.ssc-store.expanded .ssc-store__opening-hours {
+    display: block;
+}
+
+
+
+/**
+ * Start by hiding the checkboxes
+ */
+input[type=checkbox] {
+    visibility: hidden;
+}
+
+/**
+ * Checkbox Five
+ */
+.checkbox-container {
+    width: 25px;
+    margin: 0 0 20px 0;
+    position: relative;
+}
+
+/**
+ * Create the box for the checkbox
+ */
+.checkbox-container label {
+    cursor: pointer;
+    position: absolute;
+    width: 30px;
+    height: 30px;
+    top: 0;
+    left: 0;
+    background: white;
+    border:1px solid $border-color;
+}
+
+/**
+ * Display the tick inside the checkbox
+ */
+.checkbox-container label:after {
+    opacity: 0.2;
+    content: '';
+    position: absolute;
+    width: 9px;
+    height: 5px;
+    background: transparent;
+    top: 7.5px;
+    left: 7.5px;
+    border: 3px solid #333;
+    border-top: none;
+    border-right: none;
+
+    -webkit-transform: rotate(-45deg);
+    -moz-transform: rotate(-45deg);
+    -o-transform: rotate(-45deg);
+    -ms-transform: rotate(-45deg);
+    transform: rotate(-45deg);
+}
+
+/**
+ * Create the hover event of the tick
+ */
+.checkbox-container label:hover::after {
+    opacity: 0.5;
+}
+
+/**
+ * Create the checkbox state for the tick
+ */
+.checkbox-container input[type=checkbox]:checked + label:after {
+    opacity: 1;
+}
+
+dl {
+    width: 50%;
+    @include sans-serif-font-stack;
+    font-size: 12px;
+    //letter-spacing: 0.01em; // tracking 10: 10/1000
+    text-transform: capitalize;
+    color: $black;
+    dt {
+        float: left;
+        margin-right: 10%;
+        max-width: 40%;
+        font-weight: bold;
+    }
+
+    dd {
+        color: grey;
+        margin-left: 50%;
+        margin-bottom: .5em;
+    }
+
+    dd::after {
+        content: " ";
+        display: block;
+        clear: left;
+    }
+}

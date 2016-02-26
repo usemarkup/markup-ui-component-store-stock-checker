@@ -1,0 +1,193 @@
+// TYPOGRAPHY
+@mixin sans-serif-font-stack {
+    font-family: Helvetica, sans-serif;
+}
+
+@mixin serif-font-stack {
+    font-family: Georgia, Times, "Times New Roman", serif;
+}
+
+@mixin serif-italic-font-stack {
+    font-family: Georgia, Times, "Times New Roman", serif;
+    font-style: italic;
+}
+
+/* Used for regular onsite text */
+@mixin paragraph-font-stack {
+    @include sans-serif-font-stack;
+}
+
+@mixin no-text {
+    text-indent: 100%;
+    white-space: nowrap;
+    overflow: hidden;
+    .lt-ie9.lt-ie8 &{
+        text-indent:-9999px;
+        text-transform:capitalize;
+    }
+}
+
+@mixin placeholder {
+    &.placeholder { @content; }
+    &:-moz-placeholder { @content; }
+    &::-moz-placeholder { @content; }
+    &::-webkit-input-placeholder { @content; }
+}
+
+//@font-face declarations would go here
+
+// typography
+@mixin markup-typog-h1 {
+    @include sans-serif-font-stack;
+    font-size: 62px;
+    line-height: 70px;
+    letter-spacing: 0.01em;
+    color: $black;
+}
+.markup-typog-h1 {
+    @include markup-typog-h1;
+}
+
+@mixin markup-typog-h6 {
+    @include sans-serif-font-stack;
+    font-size: 12px;
+    letter-spacing: 0.01em; // tracking 10: 10/1000
+    text-transform: capitalize;
+    color: $black;
+}
+
+.markup-typog-h6 {
+    @include markup-typog-h6;
+}
+
+@mixin markup-typog-h5 {
+    @include sans-serif-font-stack;
+    font-size: 22px;
+    letter-spacing: 0.01em; // tracking 10: 10/1000
+    text-transform: capitalize;
+    color: $black;
+}
+
+.markup-typog-h5 {
+    @include markup-typog-h5;
+}
+
+@mixin markup-typog-h4 {
+    @include sans-serif-font-stack;
+    font-size: 28px;
+    line-height: 110.714285714%; // leading 31 : 100 *(31/28)
+    etter-spacing: 0.01em; // tracking 10: 10/1000
+    color: $black;
+}
+
+.markup-typog-h4 {
+    @include markup-typog-h4;
+}
+@mixin markup-typog-h3 {
+    @include sans-serif-font-stack;
+    font-size: 36px;
+    line-height: 111.111111111%;  // leading 40 : 100 *(40/36)
+    letter-spacing: 0.01em; // tracking 10: 10/1000
+    color: $black;
+}
+
+.markup-typog-h3 {
+    @include markup-typog-h3;
+}
+
+@mixin markup-typog-h2 {
+    @include sans-serif-font-stack;
+    font-size: 48px;
+    line-height: 125%; // leading 60 : 100 *(60/48)
+    letter-spacing: 0.01em; // tracking 10: 10/1000
+    color: $black;
+}
+
+.markup-typog-h2 {
+    @include markup-typog-h2;
+}
+.markup-typog-price {
+    @include sans-serif-font-stack;
+    font-size: 28px;
+    line-height: 125%; // leading 60 : 100 *(60/48)
+    letter-spacing: 0.01em; // tracking 10: 10/1000
+    color: $black;
+}
+@mixin markup-typog-preamble {
+    @include sans-serif-font-stack;
+    font-size: 26px;
+    line-height: 157.692307692%; // leading 41 : 100 *(41/26)
+    letter-spacing: 0.02em; // tracking 20: 20/1000
+    color: $mineshaft;
+}
+.markup-typog-preamble {
+    @include markup-typog-preamble;
+}
+
+@mixin markup-typog-paragraph{
+    @include sans-serif-font-stack;
+    font-size: 15px;
+    line-height: 200%; // leading 30 : 100 *(30/15)
+    letter-spacing: 0.02em; // tracking 20: 20/1000
+    color: $mineshaft;
+}
+
+.markup-typog-paragraph, .markup-typog-paragraph-large {
+    @include markup-typog-paragraph;
+}
+
+// text rules
+h1 {
+    @include markup-typog-h1;
+    .center, &.center {
+        text-align:center;
+    }
+}
+
+h1.page-title,
+body.shop-gb.information h1 {
+    @include markup-typog-h1;
+}
+
+h2 {
+    @include markup-typog-h2;
+}
+
+h3 {
+    @include markup-typog-h3;
+}
+
+h4 {
+    @include markup-typog-h4;
+}
+
+h5 {
+    @include markup-typog-h5;
+}
+
+p {
+    @include markup-typog-paragraph;
+}
+
+
+body {
+    @include markup-typog-paragraph;
+    height: 100%;
+    background-color: #fff;
+    color: $dark_grey;
+}
+
+a {
+    @include link-colors($black, $black, $black, $black, $black);
+    text-decoration: none;
+    &:hover {
+        text-decoration: underline;
+    }
+}
+// No need for leading margin in the first heading in a group
+div > h1:first-child,
+div > h2:first-child,
+div > h3:first-child,
+div > h4:first-child{
+    //@include margin-leader(0);
+}

@@ -1,0 +1,89 @@
+<div class='markup-modal markup-modal--centered{{#if show}} show{{/if}}'>
+    <div class="markup-modal__title-bar">
+        <span class="store-stock-checker-title">{{title}}</span>
+        <div class='markup-modal__title-bar-close' on-click='close'>✕</div>
+    </div>
+    <div class='markup-modal__content'>
+        <div class="store-stock-checker">
+            <div class="store-stock-checker__product store-stock-checker-product">
+                <div class="store-stock-checker-product__image">
+                    <img src="{{product.image.src}}"/>
+                </div>
+                <div class="store-stock-checker-product__details">
+                    <div class="store-stock-checker-product__collection">{{product.collection}}</div>
+                    <div class="store-stock-checker-product__title">{{product.name}}</div>
+                    <div class="store-stock-checker-product__articlenumber">artno. {{product.atricleno}}</div>
+                </div>
+            </div>
+            <div class="store-stock-checker-product__color">
+                <!--{{#color/colors}}-->
+                <div class="store-stock-checker__title store-stock-checker-title">{{color_title}}</div>
+                <img class="store-stock-checker-product__color-swatch" src="{{product.color.url}}"/>
+                <div class="store-stock-checker-product__color-name">{{product.color.name}}</div>
+                <!--{{/color}}-->
+            </div>
+            <div class="store-stock-checker-product__size">
+                <div class="store-stock-checker__title store-stock-checker-title">{{size_title}}</div>
+                <!--{{#sizes}}-->
+                <select class="store-stock-checker__select-size" value="{{selectedSize}}">
+                    <option value="false">select size</option>
+                    <option value="S">S</option>
+                    <option value="M">M</option>
+                    <option value="L">L</option>
+                    <option value="XL">XL</option>
+                </select>
+                <!--{{/sizes}}-->
+            </div>
+            <div class="store-stock-checker__results">
+                {{^stores}}
+                    <div class="store-stock-checker-results__msg">Select a size to view in-store availability</div>
+                {{/stores}}
+                {{#if stores}}
+                    <div class="store-stock-checker-results__title">Find a store near you</div>
+                    <input type="text"  class="store-stock-checker-results__postcode" value="{{postcode}}" placeholder="Enter Postcode"/>
+                    <div class="checkbox-container">
+                        <input type="checkbox" value="1" id="checkbox" name="">
+                        <label for="checkbox"></label>
+                        <span class="checkbox-label"></span>
+                    </div>
+                {{/if}}
+
+
+                {{# stores:index}}
+                    <div class="store-stock-checker__store ssc-store{{#if active}} expanded{{/if}}">
+                        <div class="ssc-store__expand" on-click='toggleActiveStore:{{index}}'></div>
+                        <div class="ssc-store__name">{{name}}</div>
+
+                        {{#address}}
+                        <div class="ssc-store__address">
+                            {{#addressLine}}{{addressLine}},{{/addressLine}}
+                            {{#addressLine2}}{{addressLine2}},{{/addressLine2}}
+                            {{#cityName}}{{cityName}},{{/cityName}}
+                            {{#postalCode}}{{postalCode}},{{/postalCode}}
+                            {{#countryName}}{{countryName}}{{/countryName}}
+                        </div>
+                        {{/address}}
+
+                        {{#openingHours}}
+                            <div class="ssc-store__opening-hours">
+                                <div class="store-stock-checker-title">{{openinghours_title}}</div>
+                                <div class="ssc-store__opening-hours-list ssc-opening-hours-list">
+                                    <dl>
+                                        {{#days}}
+                                        <dt class="opening-hours-list__term">{{day}}</dt>
+                                        <dd class="opening-hours-list__definition">{{from}} - {{to}}</dd>
+                                        {{/days}}
+                                    </dl>
+                                </div>
+                            </div>
+                        {{/openingHours}}
+                        <div class="ssc-store__footer">
+
+                        </div>
+                    </div>
+                {{/stores}}
+
+            </div>
+        </div>
+    </div>
+</div>

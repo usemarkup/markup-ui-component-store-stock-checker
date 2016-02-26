@@ -1,0 +1,52 @@
+.markup-btn {
+    @include markup-btn();
+}
+
+.markup-btn.btn-grey {
+    background: $gallery;
+    color: $black;
+}
+
+.btn-fluid {
+    width:100%;
+}
+
+.btn-doublewidth {
+    width: 400px;
+}
+.btn-anchor-bottom {
+    position: absolute;
+    bottom:0;
+}
+
+.btn-transparent {
+    background: transparent;
+    border: 1px solid $white;
+    &:hover {
+        background-color: $white;
+        text-decoration: none;
+        color: $black;
+    }
+    &:active {
+        border-color: $shuttle;
+        background-color: $shuttle;
+        text-decoration: none;
+        color: $white;
+    }
+}
+
+.btn-transparent.btn-transparent--inverse {
+    border: 1px solid $black;
+    color: $black;
+
+    &:hover {
+        background-color: $black;
+        color: $white;
+    }
+    &:active {
+        border-color: $shuttle;
+        background-color: $shuttle;
+        color: $white;
+    }
+}
+

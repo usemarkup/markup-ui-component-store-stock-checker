@@ -1,0 +1,100 @@
+/******************************************************
+ * COLORS
+ *****************************************************/
+
+$white: #FFF;
+//$off_white: #fefefe;
+//$light_grey: #f1f2f2;
+//$light_mink_grey: #f5f5f5; // <-- this one is from global gant and is preferred
+//$lighter_grey: #cfcfcf; // <-- this one is from global gant and is preferred
+//$grey: #666666; // <-- this one is from global gant and is preferred
+//$cross_grey: #999999;
+
+/* 80% black */
+//$dark_grey: #333;
+//$grey_black: #191919; // <-- this one is from global gant and is preferred
+//$off_black: #111;
+//
+///* blues */
+//$milky_blue: #91a4bd; // <-- this one is from ottoboni design and is preferred
+//
+///* cream */
+//$cream: #faf7ec; // <-- this one is from ottoboni design and is preferred
+
+/* greens */
+$light_green: #029f71;
+
+$form_background: white;
+$form_bordering: #e5e5e5;
+
+/* 3.0 colors */
+$black: #000000;
+$linen: #FCF8EC;
+$bluewood: #313857;
+$shuttle: #63656A;
+$silver: #C8C8C8;
+$wildsand: #f4f4f4;
+$carnation: #F55055;
+$tundora: #444444;
+$gallery: #EEEEEE;
+$mineshaft: #333333;
+$footer-grey: #888888;
+
+
+//specific device widths
+$iphone5:           20em;           // 320px
+$iphone6:           23.4375em;      // 375px
+$iphone6plus:       25.875em;       // 414px // start page 1 col 2 col
+$iphone5wide:       35.5em;         // 568px
+$iphone6wide:       41.6875em;      // 667px
+$iphone6pluswide:   46em;           // 736px
+$ipad:              48em;           // 768px // start page 2 col 4 col
+$ipadwide:          64em;           // 1024px
+$desktop-1:         68.75em;        // (1100px)
+$desktop-2 :        81.25em;        // (1300px)
+$desktop-3 :        100em;          // (1600px)
+
+$above-iphone6:         376px;      // > 375px
+$above-iphone6plus:     415px;      // > 414px
+$above-iphone6pluswide: 737px;      // > 736px
+$above-ipad:            769px;      // > 768px
+$above-ipadwide:        1025px;     // > 1024px
+
+$shop-width: 980px;
+
+$tablet-portrait: 768px;
+$phone-wide: 630px;
+
+$checkout-max-width: 800px;
+$checkout-max-width: 100%;
+$checkout-min-width: 0;
+
+$checkout-content-max-width: 1210px;
+
+$checkout-header-height: 46px;
+
+// susy based outer container breakpoints
+$mobile-layout: 2 568px;
+
+@function parse-int($number) {
+    @return $number / ($number * 0 + 1);
+}
+
+// new vars
+$infobar-height: 32px;
+$header-height: 70px;
+$header-height-with-infobar: parse-int($header-height) + parse-int($infobar-height) * 1px;
+
+$header-height-mobile: 50px;
+
+$max-width-navigation: 1480px;
+
+// z-indexes - the below should represent the 'layers' of the UI - WIP. If you're messing with z-index do it here.
+$z-index-modal-below-navigation: 4002;
+$z-index-modal-below-navigation-overlay: $z-index-modal-below-navigation - 1;
+
+$z-index-navigation: 5002;
+$z-index-navigation-overlay: $z-index-navigation - 1;
+
+$z-index-top-modal: 6002;
+$z-index-top-modal-overlay: $z-index-top-modal - 1;

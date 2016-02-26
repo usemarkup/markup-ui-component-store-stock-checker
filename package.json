@@ -1,0 +1,88 @@
+{
+  "name": "markup-ui-component-store-stock-checker",
+  "version": "0.0.1",
+  "description": "Store Stock Checker component. Fronend code, with 'white-label' markup and styles. Depends on a stock-checker endpoint being available in the application.",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/usemarkup/markup-ui-component-store-stock-checker.git"
+  },
+  "main": "./src/js/index.js",
+  "scripts": {
+    "test": "./node_modules/karma/bin/karma start karma.conf.js",
+    "watch": "./node_modules/gulp/bin/gulp watch",
+    "build": "./node_modules/gulp/bin/gulp build"
+  },
+  "keywords": [
+    "markup-component",
+    "markup-ui-component"
+  ],
+  "author": "Peter Lenagh",
+  "license": "ISC",
+  "devDependencies": {
+    "aliasify": "^1.9.0",
+    "babel-preset-es2015": "^6.5.0",
+    "babelify": "^7.2.0",
+    "brfs": "^1.4.3",
+    "browser-sync": "^2.11.1",
+    "browserify": "^13.0.0",
+    "browserify-istanbul": "^0.2.1",
+    "browserify-shim": "^3.8.12",
+    "chai": "^3.5.0",
+    "codecov.io": "^0.1.6",
+    "cz-conventional-changelog": "^1.1.5",
+    "gulp": "^3.9.1",
+    "gulp-changed": "^1.3.0",
+    "gulp-cssnano": "^2.1.1",
+    "gulp-eslint": "^2.0.0",
+    "gulp-if": "^2.0.0",
+    "gulp-load-plugins": "^1.2.0",
+    "gulp-newer": "^1.1.0",
+    "gulp-notify": "^2.2.0",
+    "gulp-open": "^1.0.0",
+    "gulp-sass": "^2.2.0",
+    "gulp-sourcemaps": "^1.6.0",
+    "gulp-uglify": "^1.5.2",
+    "gulp-util": "^3.0.7",
+    "karma": "^0.13.21",
+    "karma-browserify": "^5.0.1",
+    "karma-chrome-launcher": "^0.2.2",
+    "karma-coverage": "^0.5.3",
+    "karma-mocha": "^0.2.2",
+    "karma-mocha-reporter": "^1.1.6",
+    "karma-phantomjs-launcher": "^1.0.0",
+    "karma-sinon-chai": "^1.2.0-rc1",
+    "lolex": "^1.4.0",
+    "mocha": "^2.4.5",
+    "phantomjs": "^2.1.3",
+    "phantomjs-prebuilt": "^2.1.4",
+    "ractivate": "^0.2.0",
+    "sinon": "^1.17.3",
+    "sinon-chai": "^2.8.0",
+    "vinyl-source-stream": "^1.1.0",
+    "watchify": "^3.7.0"
+  },
+  "dependencies": {
+    "ractive-events-keys": "^0.2.1",
+    "reqwest": "^2.0.5"
+  },
+  "browserify": {
+    "transform": [
+      [
+        "brfs"
+      ],
+      [
+        "babelify",
+        {
+          "presets": [
+            "es2015"
+          ]
+        }
+      ]
+    ]
+  },
+  "config": {
+    "commitizen": {
+      "path": "./node_modules/cz-conventional-changelog"
+    }
+  }
+}

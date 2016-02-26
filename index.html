@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Markup Component Demo</title>
+    <link rel="stylesheet" href="/build/css/main.css" />
+</head>
+<style>
+    body {
+        background-color: #333;
+        background-image: -webkit-linear-gradient(45deg, #444 25%, transparent 25%, transparent 75%, #444 75%, #444), -webkit-linear-gradient(45deg, #444 25%, transparent 25%, transparent 75%, #444 75%, #444);
+        background-image: -moz-linear-gradient(45deg, #444 25%, transparent 25%, transparent 75%, #444 75%, #444), -moz-linear-gradient(45deg, #444 25%, transparent 25%, transparent 75%, #444 75%, #444);
+        background-image: -o-linear-gradient(45deg, #444 25%, transparent 25%, transparent 75%, #444 75%, #444), -o-linear-gradient(45deg, #444 25%, transparent 25%, transparent 75%, #444 75%, #444);
+        background-image: -ms-linear-gradient(45deg, #444 25%, transparent 25%, transparent 75%, #444 75%, #444), -ms-linear-gradient(45deg, #444 25%, transparent 25%, transparent 75%, #444 75%, #444);
+        background-image: linear-gradient(45deg, #444 25%, transparent 25%, transparent 75%, #444 75%, #444), linear-gradient(45deg, #444 25%, transparent 25%, transparent 75%, #444 75%, #444);
+        -webkit-background-size:30px 30px;
+        -moz-background-size:30px 30px;
+        background-size:30px 30px;
+        background-position:0 0, 15px 15px;
+        /*background: #F4F4F4;*/
+    }
+</style>
+<body>
+<div id="button"></div>
+<div id="output">
+
+</div>
+
+<script src="/build/main.js"></script>
+<script>
+    var MarkupStoreStockCheckerUIComponent = require('markup-ui-component-store-stock-checker').getUIComponent();
+    var MarkupStoreStockCheckerHelper = require('markup-ui-component-store-stock-checker').getHelper();
+
+
+//
+//    var fs = require("fs");
+//    console.log(__dirname);
+//    // grab a custom template
+//    var markupTemplate = fs.readFileSync(__dirname + "/src//templates/markup-store-stock-checker.html", "utf8");
+//
+//    document.addEventListener("DOMContentLoaded", function(event) {
+//        var domhookid = '#store-stock-checker';
+//        var domhook = document.querySelectorAll(domhookid);
+//        var domhookpresent = !!domhook.length;
+//
+//        console.log(domhookpresent);
+//
+//
+//        if (domhookpresent) {
+//            var data = JSON.parse(domhook[0].getAttribute('data-json'));
+//
+//            console.log("hiyaaa",data);
+//            var markupStoreStockCheckerUIComponent = new MarkupStoreStockCheckerUIComponent({
+//                el: domhook[0],
+//                data: data,
+//                template: markupTemplate
+//            });
+//
+//            markupStoreStockCheckerUIComponent.observe('selectedSize', function ( selectedSize,old ) {
+//                //console.log("observed selectedSize changed from: "+old +" to: " + selectedSize);
+//                if (selectedSize && selectedSize != "false") {
+//                    markupStoreStockCheckerUIComponent.updateStores(selectedSize);
+//                } else {
+//                    markupStoreStockCheckerUIComponent.set('stores',false);
+//                }
+//            },{
+//                'init':true
+//            });
+//
+//            // some event binding that shouldnt be here
+//            var triggers = document.querySelectorAll(".js-trigger-modal[data-modal-id='markup-store-stock-checker']");
+//            for (var i = 0; i < triggers.length; i++) {
+//                triggers[i].addEventListener("click", function (e) {
+//                    console.log('hi');
+//                    e.preventDefault();
+//                    markupStoreStockCheckerUIComponent.show();
+//                });
+//            }
+//        }
+//
+//    });
+
+</script>
+</body>
+</html>
