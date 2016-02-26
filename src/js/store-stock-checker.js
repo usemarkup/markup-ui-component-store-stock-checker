@@ -41,7 +41,6 @@ function getStores(sku, postCodeArg, onSuccess, onError) {
 var storeStockChecker = {
     // full names
     init: init,
-    render: render,
     getStores: getStores
 };
 
