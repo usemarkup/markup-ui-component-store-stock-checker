@@ -1,6 +1,6 @@
 {
   "name": "markup-ui-component-store-stock-checker",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Store Stock Checker component. Fronend code, with 'white-label' markup and styles. Depends on a stock-checker endpoint being available in the application.",
   "repository": {
     "type": "git",

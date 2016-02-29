@@ -7,6 +7,7 @@ var keys = require('ractive-events-keys');
 var template = fs.readFileSync(path.join(__dirname, '../templates/markup-modal-default.mustache'), 'utf8');
 
 Ractive.events.enter = keys.enter;
+Ractive.DEBUG = false;
 
 var MarkupModalUIComponent = Ractive.extend({
     template: template,
@@ -25,23 +26,26 @@ var MarkupModalUIComponent = Ractive.extend({
         this.set('show', false);
     },
     updateStores: function (sku, postCode) {
-        console.log('update stores called with '+sku+' + '+ postCode);
-        var _this = this;
+
+        //console.log('updateStores: '+sku+" "+postCode);
+        var component = this;
+
         var onError = function (error) {
-            console.log('error ', error);
-            _this.set('stores', false);
-            _this.set('selectedSize', false);
-            _this.update('selectedSize');
-            _this.update('stores');
+            //console.log('onError called');
+            component.set('stores', false);
+            component.set('selectedSize', false);
+            component.update('selectedSize');
+            component.update('stores');
         };
 
         var onSuccess = function (successResult) {
+            //console.log('onSuccess called');
+
             if (successResult.status === 'error') {
                 onError(successResult);
             } else {
-                console.log('success', successResult);
-                _this.set('stores', successResult.stores);
-                _this.update('stores');
+                component.set('stores', successResult.stores);
+                component.update('stores');
             }
         };
 
@@ -60,16 +64,28 @@ var MarkupModalUIComponent = Ractive.extend({
             this.hide();
         });
 
-        this.on('updateStores', function (event, sku, postCode) {
-            console.log('updateStoresEvent',event, sku, postCode);
+        this.on('postCodeSubmit', function (event, sku, postCode) {
+            // don't submit an empty postcode
+            if (postCode === "") {
+                return;
+            }
             this.updateStores(sku, postCode);
         });
-        this.on('toggleActiveStore', function (event, index) {
-            var store = this.get('stores')[index];
-            if (store.active) {
-                this.set('stores.' + index + '.active', false);
-            } else {
-                this.set('stores.' + index + '.active', true);
+
+        this.on('toggleActiveStore', function (event, name) {
+            // assumes names are unique
+            var namedStoreIndex = false;
+            var namedStore = this.get('stores').filter( function(store, i){
+                if (store.name === name) {
+                    namedStoreIndex = i;
+                    return true;
+                }
+                return false;
+            })[0];
+
+            if (namedStoreIndex) {
+                // toggle active on that store.
+                this.set('stores.' + namedStoreIndex + '.active', !namedStore.active);
             }
         });
     }

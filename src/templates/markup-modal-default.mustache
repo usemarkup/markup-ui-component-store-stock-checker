@@ -16,23 +16,23 @@
                 </div>
             </div>
             <div class="store-stock-checker-product__color">
-                <!--{{#color/colors}}-->
                 <div class="store-stock-checker__title store-stock-checker-title">{{color_title}}</div>
                 <img class="store-stock-checker-product__color-swatch" src="{{product.color.url}}"/>
                 <div class="store-stock-checker-product__color-name">{{product.color.name}}</div>
-                <!--{{/color}}-->
             </div>
             <div class="store-stock-checker-product__size">
                 <div class="store-stock-checker__title store-stock-checker-title">{{size_title}}</div>
-                <!--{{#sizes}}-->
-                <select class="store-stock-checker__select-size" value="{{selectedSize}}">
-                    <option value="false">select size</option>
-                    <option value="S">S</option>
-                    <option value="M">M</option>
-                    <option value="L">L</option>
-                    <option value="XL">XL</option>
-                </select>
-                <!--{{/sizes}}-->
+                {{#if sizes}}
+                    <div class="store-stock-checker-product__size">
+                        <div class="store-stock-checker__title store-stock-checker-title">{{copy.size_title}}</div>
+                        <select class="store-stock-checker__select-size" value="{{selectedSize}}">
+                            <option value=false default>{{copy.select_size}}</option>
+                            {{#sizes}}
+                                <option value="{{ean13}}">{{size_name}}</option>
+                            {{/sizes}}
+                        </select>
+                    </div>
+                {{/if}}
             </div>
             <div class="store-stock-checker__results">
                 {{^stores}}
