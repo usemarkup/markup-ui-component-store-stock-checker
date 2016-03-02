@@ -72,21 +72,9 @@ var MarkupModalUIComponent = Ractive.extend({
             this.updateStores(sku, postCode);
         });
 
-        this.on('toggleActiveStore', function (event, name) {
-            // assumes names are unique
-            var namedStoreIndex = false;
-            var namedStore = this.get('stores').filter( function(store, i){
-                if (store.name === name) {
-                    namedStoreIndex = i;
-                    return true;
-                }
-                return false;
-            })[0];
-
-            if (namedStoreIndex) {
-                // toggle active on that store.
-                this.set('stores.' + namedStoreIndex + '.active', !namedStore.active);
-            }
+        this.on('toggleActiveStore', function (event) {
+            event.context.active = !event.context.active;
+            this.update();
         });
     }
 });
