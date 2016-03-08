@@ -30,27 +30,42 @@ var MarkupModalUIComponent = Ractive.extend({
         //console.log('updateStores: '+sku+" "+postCode);
         var component = this;
 
-        var onError = function (error) {
+        var onError = function (errorResponse) {
             //console.log('onError called');
-            component.set('stores', false);
-            component.set('selectedSize', false);
-            component.update('selectedSize');
-            component.update('stores');
+
+            switch (errorResponse.errorType) {
+                case 'passThrough':
+                case 'general':
+                    component.set('errorTypeGeneral', true);
+                    component.set('selectedSize', '');
+                    break;
+                case 'location':
+                    component.set('errorTypeLocation', true);
+                    component.set('postCode', '');
+                    break;
+                default:
+                    component.set('errorTypeGeneral', true);
+                    component.set('selectedSize', '');
+                    component.set('postCode', '');
+            }
+
         };
 
         var onSuccess = function (successResult) {
-            //console.log('onSuccess called');
-
             if (successResult.status === 'error') {
                 onError(successResult);
             } else {
                 component.set('stores', successResult.stores);
-                component.update('stores');
             }
         };
 
         // reset stores (to show loading...)
         this.set('stores', false);
+
+        // reset errors
+        component.set('errorTypeGeneral', false);
+        component.set('errorTypeLocation',false);
+
         StoreStockChecker.getStores(sku, postCode, onSuccess, onError);
     },
     // initialisation code
