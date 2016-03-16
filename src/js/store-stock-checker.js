@@ -26,11 +26,11 @@ function getStores(sku, postCodeArg, onSuccess, onError) {
         setTimeout(function(){onSuccess(returnjson)}, 2000);return;
     }
     if (debug !== false && debug === 'fail') {
-        var errjson = {"status": "error", errorType: "general", "msg": "There has been an error."};
+        var errjson = {"response":{"status": "error", "errorType": "general", "msg": "There has been an error."}};
         setTimeout(function(){onError(errjson)}, 2000);return;
     }
     if (debug !== false && debug === 'faliLocation' && postCode) {
-        var errjson = {"status": "error", errorType: "location", "msg": "There has been an error."};
+        var errjson = {"response":{"status": "error", "errorType": "location", "msg": "There has been an error."}};
         setTimeout(function(){onError(errjson)}, 2000);return;
     }
 

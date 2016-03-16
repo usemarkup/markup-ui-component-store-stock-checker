@@ -27,36 +27,35 @@ var MarkupModalUIComponent = Ractive.extend({
     },
     updateStores: function (sku, postCode) {
 
-        //console.log('updateStores: '+sku+" "+postCode);
         var component = this;
 
-        var onError = function (errorResponse) {
-            //console.log('onError called');
-
-            switch (errorResponse.errorType) {
+        var onError = function (xmlHttpRequestObject) {
+            var response;
+            try {
+                response = JSON.parse(xmlHttpRequestObject.response);
+            }
+            catch(err) {
+                // bad response still gets default error handling in switch.
+                response = {};
+            }
+            switch (response.errorType) {
+                case 'location':
+                    // location error, location specific error
+                    component.set('errorTypeLocation', true);
+                    // unset postcode
+                    component.set('postCode', '');
+                    break;
                 case 'passThrough':
                 case 'general':
-                    component.set('errorTypeGeneral', true);
-                    component.set('selectedSize', '');
-                    break;
-                case 'location':
-                    component.set('errorTypeLocation', true);
-                    component.set('postCode', '');
-                    break;
                 default:
+                    // none of the above, generic error message
                     component.set('errorTypeGeneral', true);
-                    component.set('selectedSize', '');
-                    component.set('postCode', '');
             }
-
         };
 
-        var onSuccess = function (successResult) {
-            if (successResult.status === 'error') {
-                onError(successResult);
-            } else {
-                component.set('stores', successResult.stores);
-            }
+        // successful/200 responses always return stores. anything else goes to onError
+        var onSuccess = function (response) {
+            component.set('stores', response.stores);
         };
 
         // reset stores (to show loading...)
