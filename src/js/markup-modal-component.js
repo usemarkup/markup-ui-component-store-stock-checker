@@ -45,6 +45,10 @@ var MarkupModalUIComponent = Ractive.extend({
                     // unset postcode
                     component.set('postCode', '');
                     break;
+                case 'badRequest':
+                    // Unavailable at any stores
+                    component.set('errorTypeUnavailable', true);
+                    break;
                 case 'passThrough':
                 case 'general':
                 default:
